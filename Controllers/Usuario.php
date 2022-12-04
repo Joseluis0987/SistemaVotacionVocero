@@ -62,6 +62,7 @@ class Usuario extends Controller{
             $usuario = $this->model->getById($id);
             $_SESSION['id_usuario_seleccionado'] = $usuario->id;
             $this->view->mensaje = "";
+            $this->view->i = $param[1];
             $this->view->datos = $usuario;
             $this->view->render('Usuario/detalle');
         } else {

@@ -147,7 +147,11 @@
     <script>
         function seleccionarUsuario(id) {
             document.getElementById("frameactializar").innerHTML = "";
-            document.getElementById("frameactializar").innerHTML = "<iframe src=\"<?php echo constant('URL') . 'Usuario/seleccionar/';?>"+id+"\" style=\"display:block; width:100%; height:25vh;\"></iframe>";
+            document.getElementById("frameactializar").innerHTML = "<iframe src=\"<?php echo constant('URL') . 'Usuario/seleccionar/';?>"+id+"/"+1+"\" style=\"display:block; width:100%; height:25vh;\"></iframe>";
+        }
+        function seleccionarUsuarioSesion() {
+            document.getElementById("frameactializar").innerHTML = "";
+            document.getElementById("frameactializar").innerHTML = "<iframe src=\"<?php echo constant('URL') . 'Usuario/seleccionar/';?>"+<?php echo $_SESSION['id'];?>+"/"+2+"\" style=\"display:block; width:100%; height:45vh;\"></iframe>";
         }
         function eliminar(id) {
             swal("Deseas desactivar el usuario?", {

@@ -17,6 +17,18 @@
                     <form action="<?php echo constant('URL'); ?>Usuario/actualizar/1" method="POST">
                         <?php
                         if ($_SESSION['rol'] == 1) {
+                            if (2 == $this->i) {
+                                ?>
+                                <input type="hidden" name="rol" value="<?php echo $this->datos->rol; ?>">
+                            <input type="hidden" name="estado" value="<?php echo $this->datos->estado; ?>">
+                            <input type="hidden" name="ficha" value="<?php echo $this->datos->numeroFicha; ?>">
+                            <p><label for="Identidicacion">Identificacion</label><br><input type="number" value="<?php echo $this->datos->identificacion; ?>" min="1000000000" max="9999999999" disabled></p>
+                            <p><label for="nombre">Nombre</label><br><input type="text" name="nombre" value="<?php echo $this->datos->nombre; ?>"></p>
+                            <p><label for="apellido">Apellido</label><br><input type="text" name="apellido" value="<?php echo $this->datos->apellido; ?>"></p>
+                            <p><label for="correo">Correo</label><br><input type="email" name="correo" value="<?php echo $this->datos->correo; ?>"></p>
+                            <p><label for="correo">Contrasena</label><br><input type="text" name="contrasena" value="<?php echo $this->datos->contrasena; ?>"></p>
+                                <?php
+                            } elseif (1 == $this->i) {
                         ?>
                             <input type="hidden" name="nombre" value="<?php echo $this->datos->nombre; ?>">
                             <input type="hidden" name="apellido" value="<?php echo $this->datos->apellido; ?>">
@@ -46,7 +58,8 @@
                                     }
                                     ?>
                                 </select></p>
-                        <?php
+                        <?php   
+                            }
                         } elseif ($_SESSION['rol'] == 2 || $_SESSION['rol'] == 3) {
                         ?>
                             <input type="hidden" name="rol" value="<?php echo $this->datos->rol; ?>">

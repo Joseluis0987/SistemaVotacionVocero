@@ -40,6 +40,13 @@
                                     Usuario
                                     <ul>
                                         <li><a class="nav-link" href="<?php echo constant('URL') ?>Usuario/">consulta</a></li>
+                                        <?php
+                                        if ($_SERVER['REQUEST_URI'] == "/sistemavotacion/Usuario/") {
+                                            ?>
+                                            <li><a class="nav-link" data-bs-toggle="modal" data-bs-target="#actualizar" onclick="seleccionarUsuarioSesion(<?php echo $_SESSION['id'];?>)">editar</a></li>
+                                            <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -63,7 +70,13 @@
                                     Usuario
                                     <ul>
                                         <li><a class="nav-link" href="<?php echo constant('URL') ?>Usuario/">consulta</a></li>
-
+                                        <?php
+                                        if ($_SERVER['REQUEST_URI'] == "/sistemavotacion/Usuario/") {
+                                            ?>
+                                            <li><a class="nav-link" data-bs-toggle="modal" data-bs-target="#actualizar" onclick="seleccionarUsuarioSesion(<?php echo $_SESSION['id'];?>)">editar</a></li>
+                                            <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -83,6 +96,13 @@
                                     Usuario
                                     <ul>
                                         <li><a class="nav-link" href="<?php echo constant('URL') ?>Usuario/">consulta</a></li>
+                                        <?php
+                                        if ($_SERVER['REQUEST_URI'] == "/sistemavotacion/Usuario/") {
+                                            ?>
+                                            <li><a class="nav-link" data-bs-toggle="modal" data-bs-target="#actualizar" onclick="seleccionarUsuario(<?php echo $_SESSION['id'];?>)">editar</a></li>
+                                            <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
