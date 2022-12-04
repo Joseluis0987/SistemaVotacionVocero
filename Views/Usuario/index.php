@@ -12,7 +12,7 @@
         <h1>Usuarios</h1>
         <h5><?php echo $this->mensaje; ?></h5>
         <div class="container-lg border rounded-top">
-            <input type="text" id="buscar" id="typeEmailX" placeholder="Buscar">
+            <input type="text" class="m-2" id="buscar" placeholder="Buscar">
             <button class="btn btn-outline-dark m-2 float-end" data-bs-toggle="modal" data-bs-target="#nuevo">Nuevo</button>
             <div class="modal fade" id="nuevo" aria-hidden="true">
                 <div class="modal-dialog">

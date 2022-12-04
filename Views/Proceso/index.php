@@ -14,6 +14,7 @@
         <h1>Procesos de eleccion</h1>
         <h5><?php echo $this->mensaje; ?></h5>
         <div class="container-lg border rounded-top">
+            <input type="text" id="buscar" class="m-2" placeholder="Buscar">
             <button class="btn btn-outline-dark m-2 float-end" data-bs-toggle="modal" data-bs-target="#nuevo">Nuevo</button>
             <div class="modal fade" id="nuevo" aria-hidden="true">
                 <div class="modal-dialog">
@@ -109,6 +110,25 @@
                 }
                 });
         }
+        $(document).ready(() => {
+            $('#buscar').on('input',function(evento) {
+                evento.preventDefault();
+                let clave = $('#buscar').val().trim();
+                if (clave) {
+                    $('table').find('tbody tr').hide();
+                    $('table tbody tr').each(function() {
+                        for (let i = 0; i < 8; i++) {
+                            let datos = $(this).children().eq(i);
+                            if (datos.text().toUpperCase().includes(clave.toUpperCase())) {
+                                $(this).show();
+                            }
+                        }
+                    });
+                } else {
+                    $('table').find('tbody tr').show();
+                }
+            });
+        });
     </script>
     <?php require 'views/footer.php'; ?>
 
