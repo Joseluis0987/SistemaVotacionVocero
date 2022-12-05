@@ -70,6 +70,7 @@ class Tarjeton extends Controller{
                     $this->view->mensaje = $mensaje;
                     $this->view->render('Tarjeton/nuevo');
                 } elseif(isset($param[1]) || isset($param[2])) {
+                    $this->view->mensaje = "";
                     $this->view->proceso = $param[1];
                     $this->view->ficha = $param[2];
                     $this->view->render('Tarjeton/nuevo');

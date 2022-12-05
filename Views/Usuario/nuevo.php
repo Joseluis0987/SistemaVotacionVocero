@@ -36,7 +36,7 @@
                             ?>
                             </select></p>
                             <p><?php echo $this->mensaje; ?></p>
-                            <p><button type="submit">Enviar</button></p>
+                            <p><button class="btn btn-primary" type="submit">Enviar</button></p>
                         </form>
                     </div>
                 </div>

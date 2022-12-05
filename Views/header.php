@@ -41,7 +41,7 @@
                                     <ul>
                                         <li><a class="nav-link" href="<?php echo constant('URL') ?>Usuario/">consulta</a></li>
                                         <?php
-                                        if ($_SERVER['REQUEST_URI'] == "/sistemavotacion/Usuario/") {
+                                        if (strncasecmp($_SERVER['REQUEST_URI'] , "/sistemavotacion/Usuario", 23) === 0) {
                                             ?>
                                             <li><a class="nav-link" data-bs-toggle="modal" data-bs-target="#actualizar" onclick="seleccionarUsuarioSesion(<?php echo $_SESSION['id'];?>)">editar</a></li>
                                             <?php
@@ -95,7 +95,7 @@
                                 <li class="nav-item">
                                     Usuario
                                     <ul>
-                                        <li><a class="nav-link" href="<?php echo constant('URL') ?>Usuario/">consulta</a></li>
+                                    <li><a class="nav-link" data-bs-toggle="modal" data-bs-target="#actualizar" onclick="seleccionarUsuario(<?php echo $_SESSION['id'];?>)">editar</a></li>
                                         <?php
                                         if ($_SERVER['REQUEST_URI'] == "/sistemavotacion/Usuario/") {
                                             ?>
@@ -128,6 +128,25 @@
             </div>
         </nav>
     </div>
+    <div class="modal fade" id="actualizar" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar tarjeton</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="frameactializar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function seleccionarUsuario(id) {
+            document.getElementById("frameactializar").innerHTML = "";
+            document.getElementById("frameactializar").innerHTML = "<iframe src=\"<?php echo constant('URL') . 'Usuario/seleccionar/';?>"+id+"/"+1+"\" style=\"display:block; width:100%; height:50vh;\"></iframe>";
+        }
+    </script>
     <br><br><br><br><br>
 </body>
 

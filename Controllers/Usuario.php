@@ -34,7 +34,7 @@ class Usuario extends Controller{
                     $ficha = $_POST['ficha'];
                     $mensaje = "";
                     if($this->model->insert(['identificacion'=>$identificacion, 'rol'=>$rol, 'nombre'=>$nombre, 'apellido'=>$apellido, 'correo'=>$correo, 'contrasena'=>$contrasena, 'ficha'=>$ficha])) {
-                        $this->view->mensaje = "Usuario actualizado";
+                        $this->view->mensaje = "Usuario creado exitosamente";
                     } else {
                         $this->view->mensaje = "Error al crear usuario";
                     }
@@ -55,6 +55,9 @@ class Usuario extends Controller{
     function seleccionar($param = null){
         if (isset($_SESSION['rol'])) {
             if ($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2) {
+                if ($_SESSION['rol'] == 1) {
+                    $this->view->i = $param[1];
+                }
                 $id = $param[0];
             } elseif ($_SESSION['rol'] == 3) {
                 $id = $_SESSION['id'];
@@ -62,7 +65,6 @@ class Usuario extends Controller{
             $usuario = $this->model->getById($id);
             $_SESSION['id_usuario_seleccionado'] = $usuario->id;
             $this->view->mensaje = "";
-            $this->view->i = $param[1];
             $this->view->datos = $usuario;
             $this->view->render('Usuario/detalle');
         } else {
@@ -97,7 +99,7 @@ class Usuario extends Controller{
         if (isset($_SESSION['rol'])) {
             if ($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2) {
                 $id = $param[0];
-                $estado = !($_POST['estado']);
+                $estado = !($param[1]);
                 if($this->model->delete(['id'=>$id,'estado'=>$estado])) {
                     if ($estado) {
                         $mensaje = "Usuario activado correctamente";

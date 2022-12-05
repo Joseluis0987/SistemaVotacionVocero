@@ -23,8 +23,8 @@
                                 foreach ($ficham->get() as $row) {
                                     $ficha = new FichaModel();
                                     $ficha = $row;
-                                ?>x
-                                <option value="<?php echo $ficha->id; ?>"><?php echo $ficha->id; ?></option>
+                                ?>
+                                <option value="<?php echo $ficha->id; ?>"><?php echo $ficha->id." ".$ficha->formacion; ?></option>
                             <?php
                                 }
                             ?>

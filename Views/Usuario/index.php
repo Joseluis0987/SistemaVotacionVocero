@@ -80,7 +80,7 @@
                             <?php 
                             }
                             ?>
-                            <td class="p-0"><form action="<?php echo constant('URL').'Usuario/desactivar/'.$usuario->id;?>" method="post"><input type="hidden" name="estado" value="<?php echo $usuario->estado;?>"><button type="submit" class="btn <?php if($usuario->estado){echo "btn-outline-danger";}else{echo "btn-outline-success";}?> w-100 h-100 m-0"><?php if($usuario->estado){echo "Desactivar";}else{echo "activar";}?></button></form></td>
+                            <td class="p-0"><a onclick="eliminar(<?php echo $usuario->id.','.$usuario->estado;?>)" class="btn <?php if($usuario->estado){echo "btn-outline-danger";}else{echo "btn-outline-success";}?> w-100 h-100 m-0"><?php if($usuario->estado){echo "Desactivar";}else{echo "activar";}?></a></td>
                         </tr>
                             <?php 
                             } elseif ($_SESSION['rol'] == 2) {
@@ -115,7 +115,7 @@
                             <?php 
                             }
                             ?>
-                            <td class="p-0"><form action="<?php echo constant('URL').'Usuario/desactivar/'.$usuario->id;?>" method="post"><input type="hidden" name="estado" value="<?php echo $usuario->estado;?>"><button type="submit" class="btn <?php if($usuario->estado){echo "btn-outline-danger";}else{echo "btn-outline-success";}?> w-100 h-100 m-0"><?php if($usuario->estado){echo "Desactivar";}else{echo "activar";}?></button></form></td>
+                            <td class="p-0"><a onclick="eliminar(<?php echo $usuario->id.','.$usuario->estado;?>)" class="btn <?php if($usuario->estado){echo "btn-outline-danger";}else{echo "btn-outline-success";}?> w-100 h-100 m-0"><?php if($usuario->estado){echo "Desactivar";}else{echo "activar";}?></a></td>
                         </tr>
                                     <?php
                                 }
@@ -153,26 +153,49 @@
             document.getElementById("frameactializar").innerHTML = "";
             document.getElementById("frameactializar").innerHTML = "<iframe src=\"<?php echo constant('URL') . 'Usuario/seleccionar/';?>"+<?php echo $_SESSION['id'];?>+"/"+2+"\" style=\"display:block; width:100%; height:45vh;\"></iframe>";
         }
-        function eliminar(id) {
-            swal("Deseas desactivar el usuario?", {
-                buttons: {
-                    no: {
-                    text: "NO!",
-                    value: false,
+        function eliminar(id,estado) {
+            if (estado) {
+                swal("Deseas desactivar el usuario?", {
+                    buttons: {
+                        no: {
+                        text: "NO!",
+                        value: false,
+                        },
+                        si: {
+                        text: "Si",
+                        value: true,
+                        }
                     },
-                    si: {
-                    text: "Si",
-                    value: true,
+                    })
+                    .then((value) => {
+                    if (value) {
+                        location.href ='<?php echo constant('URL') . 'usuario/desactivar/';?>'+id+'/'+estado;
+                    } else {
+                        
                     }
-                },
-                })
-                .then((value) => {
-                if (value) {
-                    location.href ='<?php echo constant('URL') . 'usuario/desactivar/';?>'+proceso+'/'+id;
+                    });
                 } else {
-                    
-                }
-                });
+                swal("Deseas activar el usuario?", {
+                    buttons: {
+                        no: {
+                        text: "NO!",
+                        value: false,
+                        },
+                        si: {
+                        text: "Si",
+                        value: true,
+                        }
+                    },
+                    })
+                    .then((value) => {
+                    if (value) {
+                        location.href ='<?php echo constant('URL') . 'usuario/desactivar/';?>'+id+'/'+estado;
+                    } else {
+                        
+                    }
+                    });
+
+            }
         }
         $(document).ready(() => {
             $('#buscar').on('input',function(evento) {

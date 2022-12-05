@@ -29,6 +29,7 @@
                                 ?>
                             </select></p>
                         <p><label for="descripcion">Descripcion</label><br><textarea name="descripcion" cols="30" rows="10"></textarea></p>
+                        <p><?php echo $this->mensaje;?></p>
                         <p><button type="submit" class="btn btn-primary">Enviar</button></p>
                     </form>
                 </div>

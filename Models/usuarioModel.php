@@ -139,7 +139,7 @@ class UsuarioModel extends Model{
 
     public function login($datos) {
         $item = new UsuarioModel();
-        $query= $this->db->connect()->prepare("SELECT * FROM usuario WHERE correoUsuario = :user1 AND contrasenaUsuario = :contrasena1 OR identificacionUsuario = :user2 AND contrasenaUsuario = :contrasena2");
+        $query= $this->db->connect()->prepare("SELECT * FROM usuario WHERE correoUsuario = :user1 AND contrasenaUsuario = :contrasena1 AND estadoUsuario = 1 OR identificacionUsuario = :user2 AND contrasenaUsuario = :contrasena2 AND estadoUsuario = 1");
         $item->verificacion = false;
         try {
             $query->execute([':user1'=> $datos['user'], ':contrasena1'=> $datos['contrasena'],':user2'=> $datos['user'], ':contrasena2'=> $datos['contrasena']]);
