@@ -16,19 +16,29 @@
                 <div class="card-body">
                     <form action="<?php echo constant('URL'); ?>Proceso/registrar/1" method="POST">
                         <p ><label for="nombre">Nombre</label><br><input type="text" name="nombre"></p>
-                        <p><label for="nombre">Ficha</label><br><select name="ficha">
-                                <?php
-                                include_once 'models/fichaModel.php';
-                                $ficham = new FichaModel();
-                                foreach ($ficham->get() as $row) {
-                                    $ficha = new FichaModel();
-                                    $ficha = $row;
+                        <?php
+                            if ($_SESSION['rol'] == 1) {
                                 ?>
-                                <option value="<?php echo $ficha->id; ?>"><?php echo $ficha->id." ".$ficha->formacion; ?></option>
-                            <?php
-                                }
+                                    <p><label for="nombre">Ficha</label><br><select name="ficha">
+                                            <?php
+                                            include_once 'models/fichaModel.php';
+                                            $ficham = new FichaModel();
+                                            foreach ($ficham->get() as $row) {
+                                                $ficha = new FichaModel();
+                                                $ficha = $row;
+                                            ?>
+                                            <option value="<?php echo $ficha->id; ?>"><?php echo $ficha->id." ".$ficha->formacion; ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                </select></p>
+                                <?php
+                            } else {
+                                ?>
+                                <input name="ficha" type="hidden" value="<?php echo $_SESSION['numeroFicha'];?>">
+                                <?php
+                        }
                             ?>
-                            </select></p>
                         <p><label for="fechaFin">Fecha inicio</label><br><input type="date" name="fechaInicio"></p>
                         <p><label for="fechaFin">Fecha fin</label><br><input type="date" name="fechaFin"></p>
                         <p><?php echo $this->mensaje; ?></p>

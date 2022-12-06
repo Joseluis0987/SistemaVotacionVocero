@@ -8,8 +8,13 @@ class Proceso extends Controller{
     
     function render(){
         if (isset($_SESSION['rol'])) {
-            if ($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2) {
+            if ($_SESSION['rol'] == 1) {
                 $proceso = $this->model->get();
+                $this->view->datos = $proceso;
+                $this->view->mensaje = $this->mensaje;
+                $this->view->render('Proceso/index');
+            } elseif ($_SESSION['rol'] == 2) {
+                $proceso = $this->model->getByFicha($_SESSION['numeroFicha']);
                 $this->view->datos = $proceso;
                 $this->view->mensaje = $this->mensaje;
                 $this->view->render('Proceso/index');

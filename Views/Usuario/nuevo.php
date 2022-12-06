@@ -22,19 +22,29 @@
                             <p><label for="nombre">Nombre</label><br><input type="text" name="nombre" required></p>
                             <p><label for="apellido">Apellido</label><br><input type="text" name="apellido" required></p>
                             <p><label for="correo">Correo</label><br><input type="email" name="correo" required></p>
-                            <p><label for="nombre">Ficha</label><br><select name="ficha">
                             <?php
-                            include_once 'models/fichaModel.php';
-                            $ficham = new FichaModel();
-                            foreach($ficham->get() as $row) { 
-                                $ficha = new FichaModel();
-                                $ficha = $row;
+                            if ($_SESSION['rol'] == 1) {
                                 ?>
-                                <option value="<?php echo $ficha->id;?>"><?php echo $ficha->id." ".$ficha->formacion; ?></option>
+                                <p><label for="nombre">Ficha</label><br><select name="ficha">
                                 <?php
-                            }
+                                include_once 'models/fichaModel.php';
+                                $ficham = new FichaModel();
+                                foreach($ficham->get() as $row) { 
+                                    $ficha = new FichaModel();
+                                    $ficha = $row;
+                                    ?>
+                                    <option value="<?php echo $ficha->id;?>"><?php echo $ficha->id." ".$ficha->formacion; ?></option>
+                                    <?php
+                                }
+                                ?>
+                                </select></p>
+                                <?php
+                            } else {
+                                ?>
+                                <input name="ficha" type="hidden" value="<?php echo $_SESSION['numeroFicha'];?>">
+                                <?php
+                        }
                             ?>
-                            </select></p>
                             <p><?php echo $this->mensaje; ?></p>
                             <p><button class="btn btn-primary" type="submit">Enviar</button></p>
                         </form>
